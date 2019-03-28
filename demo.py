@@ -49,9 +49,10 @@ from textwrap import fill
 #
 # subscription_key = "a14d...ef24"
 
-if os.path.isfile(KEY_FILE):
-    if os.path.getsize(KEY_FILE) != 0:
-        print("""The following file has been found and is assumed to contain an Azure Text
+key_found = os.path.isfile(KEY_FILE)
+
+if os.path.isfile(KEY_FILE) and os.path.getsize(KEY_FILE) != 0:
+    print("""The following file has been found and is assumed to contain an Azure Text
 Translator subscription key. We will load the file and use this information.
 
     """ + os.getcwd() + "/" + KEY_FILE)
@@ -141,26 +142,24 @@ print("""
 Text Translation from English
 =============================
 
-Below we demonstrate the translation of the text from the lyrics of a famous
-song to a collection of languages. Notice for convenience of formatting of the
-output each line is terminated with a sentence punctuation.""")
+Below we demonstrate the translation of a variety of common phrases as we might
+find when interacting with a voice command system.""")
 
-wish_you_were_here = [{ 'text': """
-    So, so you think you can tell.
-    Heaven from hell.
-    Blue skies from pain.
-    Can you tell a green field.
-    From a cold steel rail?
-    A smile from a veil?
-    Do you think you can tell?
+utterances = [{ 'text': """
+    Hi Tom, has my parcel arrived yet?
+    Where is a good shop to buy mobile phones?
+    Have a look at their reply.
+    We are running late.
+    Is it time to leave for dinner yet?
+    Which is the most important message?
 """}]
 
-print(wish_you_were_here[0]['text'])
+print(utterances[0]['text'])
     
 if live:
 
     params   = '&to=de&to=it&to=id&to=tlh&to=hi'
-    request = requests.post(translate_url + params, headers=headers, json=wish_you_were_here)
+    request = requests.post(translate_url + params, headers=headers, json=utterances)
     response = request.json()
 
 lang = response[0]['detectedLanguage']
