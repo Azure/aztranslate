@@ -3,7 +3,7 @@ meta:
   name         : aztranslate
   title        : Azure Text Translation cognitive services on the cloud.
   keywords     : azure, text translation, translation, cloud
-  version      : 1.0.3
+  version      : 1.0.4
   languages    : py
   license      : mit
   author       : Graham.Williams@togaware.com
