@@ -111,23 +111,26 @@ Suppported Languages
 These are the languages supported by the Azure Translator for translation.
 """)
 
-response = requests.get(languages_url, headers=headers).json()
+response = requests.get(languages_url, headers=headers)
+response = response.json()
 translations = response['translation']
 
 #print(json.dumps(translations, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': ')))
 #print(json.dumps(translations))
 
-# TODO: Print one line per language:
-#
-# af	Afrikaans	Afrikaans	ltr
-# en	English		English		ltr
-# ko	Korean		한국어		ltr
+count = 1
+for l in translations:
+    if count%20 == 0:
+        sys.stdout.write("""
+Press Enter to continue: """)
+        answer = input()
+        print()
+    t = translations[l]
+    print("{:7} {} {:25} {:25}".format(l, t['dir'], t['name'], t['nativeName']))
+    count += 1
 
-
-lang = ""
-for l in translations: lang += " " + l
-lang = lang.lstrip()
-print(fill(lang))
+print("""
+That's {} languages in total.""".format(count))
 
 sys.stdout.write("""
 Press Enter to continue: """)
