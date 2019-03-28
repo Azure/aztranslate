@@ -49,8 +49,9 @@ from textwrap import fill
 #
 # subscription_key = "a14d...ef24"
 
-if os.path.isfile(KEY_FILE) & os.path.getsize(KEY_FILE) != 0:
-    print("""The following file has been found and is assumed to contain an Azure Text
+if os.path.isfile(KEY_FILE):
+    if os.path.getsize(KEY_FILE) != 0:
+        print("""The following file has been found and is assumed to contain an Azure Text
 Translator subscription key. We will load the file and use this information.
 
     """ + os.getcwd() + "/" + KEY_FILE)
