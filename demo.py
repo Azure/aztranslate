@@ -123,6 +123,7 @@ translations = response['translation']
 # en	English		English		ltr
 # ko	Korean		한국어		ltr
 
+
 lang = ""
 for l in translations: lang += " " + l
 lang = lang.lstrip()
@@ -155,7 +156,7 @@ print(wish_you_were_here[0]['text'])
     
 if live:
 
-    params   = '&to=de&to=it&to=id'
+    params   = '&to=de&to=it&to=id&to=tlh&to=hi'
     request = requests.post(translate_url + params, headers=headers, json=wish_you_were_here)
     response = request.json()
 
