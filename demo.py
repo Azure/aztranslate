@@ -169,7 +169,7 @@ print("The supplied text was detected as '{}' with a score of '{}'.".
 trans = response[0]['translations']
 for t in trans:
     sys.stdout.write("""
-Press Enter for a translation to '{}': """.format(t['to']))
+Press Enter for a translation to {}: """.format(translations[t['to']]['name']))
     answer = input()
 
     sys.stdout.write(t['text'])
