@@ -9,7 +9,7 @@ meta:
   author       : Graham.Williams@togaware.com
   url          : https://github.com/gjwgit/aztranslate
 dependencies:
-  pip3: requests, uuid #, json, textwrap
+  pip3: requests, uuid
   files:
     - https://mlhub.ai/empty.txt: private.py
     - demo.py
