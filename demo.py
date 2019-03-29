@@ -116,9 +116,6 @@ response = requests.get(languages_url, headers=headers)
 response = response.json()
 translations = response['translation']
 
-#print(json.dumps(translations, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': ')))
-#print(json.dumps(translations))
-
 count = 1
 for l in translations:
     if count%20 == 0:
@@ -157,21 +154,49 @@ utterances = [{ 'text': """
 print(utterances[0]['text'])
     
 if live:
-
     params   = '&to=de&to=it&to=id&to=tlh&to=hi'
     request = requests.post(translate_url + params, headers=headers, json=utterances)
     response = request.json()
 
-lang = response[0]['detectedLanguage']
+    lang  = response[0]['detectedLanguage']
+    trans = response[0]['translations']
+
 print("The supplied text was detected as '{}' with a score of '{}'.".
       format(lang['language'], lang['score']))
 
-trans = response[0]['translations']
 for t in trans:
     sys.stdout.write("""
 Press Enter for a translation to {}: """.format(translations[t['to']]['name']))
     answer = input()
-
     sys.stdout.write(t['text'])
+
+print("""
+===========================
+Translation back to English
+===========================
+
+Below we translate each of the above translations back to English. Again the 
+source language is automatically identified.
+
+Here's a reminder of the original English utterances:""")
+
+print(utterances[0]['text'])
+
+if live:
+    params   = '&to=en'
+    request = requests.post(translate_url + params, headers=headers, json=trans)
+    reverse = request.json()
+
+for t in reverse:
+    lang  = t['detectedLanguage']
+    trans = t['translations']
+    sys.stdout.write("""
+Press Enter for the translation from {} (language id score={}): """.
+                     format(translations[lang['language']]['name'],
+                            lang['score']))
+    answer = input()
+    sys.stdout.write(trans[0]['text'])
+
+    
 
     
