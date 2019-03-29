@@ -154,7 +154,7 @@ utterances = [{ 'text': """
 print(utterances[0]['text'])
     
 if live:
-    params   = '&to=de&to=it&to=id&to=tlh&to=hi'
+    params   = '&to=de&to=it&to=id&to=hi'
     request = requests.post(translate_url + params, headers=headers, json=utterances)
     response = request.json()
 
