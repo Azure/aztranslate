@@ -247,40 +247,6 @@ Press Enter for the translation from Hindi (language id score=0.97):
     Tell me the most important message this morning?
     When is a good time to meet Susan and Dave?
 
-Press Enter to continue on to Issues: 
-
-===========================
-Limitations of Translations
-===========================
-
-Douglas Hofstadter, a professor of cognitive science and comparative
-literature at Indiana University at Bloomington and author of the book
-Gödel, Escher, Bach, highlights in a January 2018 article in The
-Atlantic the limitations of automated language translation. To
-paraphrase, the translators do not have any deep understanding of the
-text but have developed a shallower mechanical process to do a decent job
-for simple communications.
-
-Below we illustrate with one of Hofstadter's examples. See the
-original article for details:
-
-https://www.theatlantic.com/technology/archive/2018/01/the-shallowness-of-google-translate/551570/
-
-*** The sample text is:
-
-In their house, everything comes in pairs. There's his car and her
-car, his towels and her towels, and his library and hers.
-
-*** The French translation is:
-
-Dans leur maison, tout se passe par paires. Il y a sa voiture, sa
-voiture, ses serviettes, ses serviettes, sa bibliothèque et la sienne.
-
-*** Translating back to English demonstrates a shallow understanding:
-
-In their House, everything happens in pairs. There's his car, his car,
-his towels, his towels, his library and hers.
-
 To use the model to translate user provided text:
 
   $ ml do aztranslate
@@ -309,26 +275,69 @@ Enter a line of text in any language and we'll attempt to translate it to Englis
 
 Exit when no text supplied.
 
-> सभी मनुष्यों को गौरव और अधिकारों के मामले में जन्मजात स्वतन्त्रता और समानता
-> प्राप्त है। उन्हें बुद्धि और अन्तरात्मा की देन प्राप्त है और परस्पर उन्हें भाईचारे के भाव से बर्ताव करना चाहिये।
+> सभी मनुष्यों को गौरव और अधिकारों के मामले में जन्मजात स्वतन्त्रता और समानता प्राप्त है। उन्हें
+> बुद्धि और अन्तरात्मा की देन प्राप्त है और परस्पर उन्हें भाईचारे के भाव से बर्ताव करना चाहिये।
 
-The text was identified as hi with 100% certainty:
+The text was identified as Hindi with 100% certainty:
     
-  en: All human beings have inherent freedom and equality in terms of
-  pride and rights. They have the wisdom and the conscience, and they
-  must behave in a spirit of brotherhood.
+  English: All human beings have inherent freedom and equality in 
+  terms of pride and rights. They have the wisdom and the conscience,
+  and they must behave in a spirit of brotherhood.
 
 > C’est l’exception qui confirme la règle.
 
-The text was identified as fr with 100% certainty:
+The text was identified as French with 100% certainty:
     
-  en: This is the exception that confirms the rule.
+  English: This is the exception that confirms the rule.
 
 > Dimana ada kemauan, di situ ada jalan
 
-The text was identified as id with 100% certainty:
+The text was identified as Indonesian with 100% certainty:
     
-  en: Where there's a will, there is no way
+  English: Where there's a will, there is no way
 
 > 
+
+To explore limitations of translations:
+
+  $ ml limits aztranslate
 ```
+
+Limitations of Translations
+---------------------------
+
+Douglas Hofstadter, a professor of cognitive science and comparative
+literature at Indiana University at Bloomington and author of the book
+Gödel, Escher, Bach, highlights in a January 2018 article in The
+Atlantic the limitations of automated language translation. To
+paraphrase, the translators do not have any deep understanding of the
+text but have developed a shallower mechanical process to do a decent job
+for simple communications.
+
+Below we illustrate with one of Hofstadter's examples which you can
+replicate with the LIMITS command. See the original article for
+details:
+
+https://www.theatlantic.com/technology/archive/2018/01/the-shallowness-of-google-translate/551570/
+
+```console
+$ ml limits aztranslate
+
+[...]
+
+*** Consider this sample text:
+
+In their house, everything comes in pairs. There's his car and her
+car, his towels and her towels, and his library and hers.
+
+*** The French translation is:
+
+Dans leur maison, tout se passe par paires. Il y a sa voiture, sa
+voiture, ses serviettes, ses serviettes, sa bibliothèque et la sienne.
+
+*** Translating back to English demonstrates a shallow understanding:
+
+In their House, everything happens in pairs. There's his car, his car,
+his towels, his towels, his library and hers.
+```
+
