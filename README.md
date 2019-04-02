@@ -285,3 +285,50 @@ To use the model to translate user provided text:
 
   $ ml do aztranslate
 ```
+
+Interactive Use
+---------------
+
+We can interact with the model simply. Here we enter a few texts in
+different languages and have them translated into English. Note the
+variability of the competency of the translation. Translation from the
+Indonesian language is not as well developed as other languages!
+
+```console
+$ ml do aztranslate
+================================
+Azure Text Translation to English
+=================================
+
+The following file has been found and is assumed to contain an Azure Text
+Translator subscription key. We will load the file and use this information.
+
+    /home/gjw/.mlhub/aztranslate/private.py
+
+Enter a line of text in any language and we'll attempt to translate it to English.
+
+Exit when no text supplied.
+
+> सभी मनुष्यों को गौरव और अधिकारों के मामले में जन्मजात स्वतन्त्रता और समानता
+प्राप्त है। उन्हें बुद्धि और अन्तरात्मा की देन प्राप्त है और परस्पर उन्हें भाईचारे के भाव से बर्ताव करना चाहिये।
+
+The text was identified as hi with 100% certainty:
+    
+  en: All human beings have inherent freedom and equality in terms of
+  pride and rights. They have the wisdom and the conscience, and they
+  must behave in a spirit of brotherhood.
+
+> C’est l’exception qui confirme la règle.
+
+The text was identified as fr with 100% certainty:
+    
+  en: This is the exception that confirms the rule.
+
+> Dimana ada kemauan, di situ ada jalan
+
+The text was identified as id with 100% certainty:
+    
+  en: Where there's a will, there is no way
+
+> 
+```
