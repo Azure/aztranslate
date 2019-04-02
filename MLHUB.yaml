@@ -18,4 +18,3 @@ dependencies:
 commands:
   demo    : Demonstrate the functionality of text translator.
   do      : Use the model to translate user provided text.
-  
