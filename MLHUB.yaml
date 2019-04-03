@@ -14,7 +14,9 @@ dependencies:
     - https://mlhub.ai/empty.txt: private.py
     - README.md
     - demo.py
+    - limits.py
     - do.py
 commands:
   demo    : Demonstrate the functionality of text translator.
+  limits  : Limitations of deep learning with shallow AI.
   do      : Use the model to translate user provided text.
