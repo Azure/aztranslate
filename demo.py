@@ -9,7 +9,8 @@
 # https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Python
 #
 
-print("""======================
+print("""\
+======================
 Azure Text Translation
 ======================
 
