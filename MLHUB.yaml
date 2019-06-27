@@ -3,11 +3,11 @@ meta:
   name         : aztranslate
   title        : Azure Text Translation cognitive services on the cloud.
   keywords     : azure, text translation, translation, cloud
-  version      : 1.2.1
+  version      : 2.0.0
   languages    : py
   license      : mit
-  author       : Graham.Williams@togaware.com
-  url          : https://github.com/gjwgit/aztranslate
+  author       : Graham.Williams@microsoft.com
+  url          : https://github.com/Azure/aztranslate
 dependencies:
   pip3: requests, uuid
   files:
@@ -17,6 +17,6 @@ dependencies:
     - limits.py
     - do.py
 commands:
-  demo    : Demonstrate the functionality of text translator.
-  limits  : Discuss limitations of deep learning with shallow AI.
-  do      : Use the model to translate user provided text.
+  demo: Demonstrate the functionality of text translator.
+  limits: Discuss limitations of deep learning with shallow AI.
+  translate: Use the model to translate user provided text.
