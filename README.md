@@ -1,5 +1,4 @@
-Azure Text Translation
-======================
+# Azure Text Translation
 
 This [MLHub](https://mlhub.ai) package provides a quick introduction
 to the pre-built Text Translation models provided through Azure's
@@ -14,8 +13,11 @@ AI and Machine Learning called Text Translations. Once created you can
 access the web API subscription key from the portal. This will be
 prompted for in the demo.
 
-Please note that this is *closed source software* which limits your
-freedoms and has no guarantee of ongoing availability.
+This package is part of the [Azure on
+MLHub](https://github.com/Azure/mlhub) repository. Please note that
+these Azure models, unlike the MLHub models in general, use *closed
+source services* which have no guarantee of ongoing availability and
+do not come with the freedom to modify and share.
 
 Visit the github repository for more details:
 <https://github.com/gjwgit/aztranslate>
@@ -23,8 +25,7 @@ Visit the github repository for more details:
 The Python code is based on the [Azure Text Translator Quick
 Start](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-python-translate)
 
-Usage
------
+## Usage
 
 - To install mlhub 
 
@@ -38,8 +39,7 @@ Usage
 		$ ml do        aztranslate
 		$ ml limits    aztranslate
 
-Demonstration
--------------
+## Demonstration
 
 ```console
 $ ml demo aztranslate
@@ -253,8 +253,7 @@ To use the model to translate user provided text:
   $ ml do aztranslate
 ```
 
-Interactive Use
----------------
+## Interactive Use
 
 We can interact with the model simply. Here we enter a few texts in
 different languages and have them translated into English. Note the
@@ -304,8 +303,7 @@ To explore limitations of translations:
   $ ml limits aztranslate
 ```
 
-Limitations of Translations
----------------------------
+## Limitations of Translations
 
 Douglas Hofstadter, a professor of cognitive science and comparative
 literature at Indiana University at Bloomington and author of the book
