@@ -250,7 +250,7 @@ Press Enter for the translation from Hindi (language id score=0.97):
 
 To use the model to translate user provided text:
 
-  $ ml do aztranslate
+  $ ml translate aztranslate
 ```
 
 ## Interactive Use
@@ -261,7 +261,7 @@ variability of the competency of the translation. Translation from the
 Indonesian language is not as well developed as other languages!
 
 ```console
-$ ml do aztranslate
+$ ml translate aztranslate
 ================================
 Azure Text Translation to English
 =================================
