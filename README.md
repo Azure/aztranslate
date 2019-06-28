@@ -20,7 +20,7 @@ source services* which have no guarantee of ongoing availability and
 do not come with the freedom to modify and share.
 
 Visit the github repository for more details:
-<https://github.com/gjwgit/aztranslate>
+<https://github.com/Azure/aztranslate>
 
 The Python code is based on the [Azure Text Translator Quick
 Start](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-python-translate)
@@ -36,7 +36,7 @@ Start](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quic
 		$ ml install   aztranslate
 		$ ml configure aztranslate
 		$ ml demo      aztranslate
-		$ ml do        aztranslate
+		$ ml translate aztranslate
 		$ ml limits    aztranslate
 
 ## Demonstration
