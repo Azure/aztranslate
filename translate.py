@@ -21,7 +21,6 @@ import requests
 import uuid
 import json
 import argparse
-import select
 
 from textwrap import fill
 from mlhub.pkg import azkey
@@ -84,7 +83,7 @@ txt = " ".join(args.text)
 if txt != "":
     translateText(txt)
     print()
-elif select.select([sys.stdin,],[],[],0.0)[0]:
+elif not sys.stdin.isatty()
     for txt in sys.stdin.readlines():
         translateText(txt)
 else:
