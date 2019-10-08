@@ -83,7 +83,7 @@ txt = " ".join(args.text)
 if txt != "":
     translateText(txt)
     print()
-elif not sys.stdin.isatty()
+elif not sys.stdin.isatty():
     for txt in sys.stdin.readlines():
         translateText(txt)
 else:
