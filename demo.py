@@ -19,23 +19,6 @@ through Azure's Cognitive Services. This service translates text between
 multiple languages.
 """)
 
-# Defaults.
-
-KEY_FILE = "private.py"
-
-subscription_key = None
-live = True
-
-# Build the REST API URLs.
-
-base_url = 'https://api.cognitive.microsofttranslator.com'
-
-path     = '/translate?api-version=3.0'
-translate_url = base_url + path
-
-path = '/languages?api-version=3.0'
-languages_url = base_url + path
-
 # Import the required libraries.
 
 import sys
@@ -43,45 +26,32 @@ import os
 import requests
 import uuid
 import json
+
 from textwrap import fill
+from mlhub.pkg import azkey
 
-# Prompt the user for the key and save into private.py for
-# future runs of the model. The contents of that file is:
-#
-# subscription_key = "a14d...ef24"
+# Defaults.
 
-key_found = os.path.isfile(KEY_FILE)
+SERVICE = "Text Translator"
+KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
 
-if os.path.isfile(KEY_FILE) and os.path.getsize(KEY_FILE) != 0:
-    print("""The following file has been found and is assumed to contain an Azure Text
-Translator subscription key. We will load the file and use this information.
+live = True
 
-    """ + os.getcwd() + "/" + KEY_FILE)
-    exec(open(KEY_FILE).read())
-else:
-    print("""An Azure resource is required to access this service (and to run this
-demo). See the README for details of a free subscription. Then you can
-provide the key and the region information here.
-""")
-#If you don't have a key and want to review the canned examples rather
-#than work with the live examples, you can indeed continue simply by 
-#pressing the Enter key.
-#""")
-    sys.stdout.write("Please enter your Text Analytics subscription key []: ")
-    subscription_key = input()
+# ----------------------------------------------------------------------
+# Request subscription key and endpoint from user.
+# ----------------------------------------------------------------------
 
-    if len(subscription_key) > 0:
-        assert subscription_key
-        oKEY_FILE = open(KEY_FILE, "w")
-        oKEY_FILE.write("""subscription_key = "{}"
-assert subscription_key
-    """.format(subscription_key))
-        oKEY_FILE.close()
+key, endpoint = azkey(KEY_FILE, SERVICE, verbose=False, baseurl=True)
 
-        print("""
-I've saved that information into the file:
+# ----------------------------------------------------------------------
+# Build the REST API URLs.
+# ----------------------------------------------------------------------
 
-""" + os.getcwd() + "/" + KEY_FILE)
+path     = '/translate?api-version=3.0'
+translate_url = endpoint + path
+
+path = '/languages?api-version=3.0'
+languages_url = endpoint + path
 
 # Handle canned demonstration.
     
@@ -100,7 +70,7 @@ Press Enter to continue: """)
 answer = input()
 
 headers  = {
-    'Ocp-Apim-Subscription-Key': subscription_key,
+    'Ocp-Apim-Subscription-Key': key,
     'Content-type': 'application/json',
     'X-ClientTraceId': str(uuid.uuid4())
 }  
