@@ -8,11 +8,11 @@ supported.
 
 A free Azure subscription allowing up to 2,000,000 character
 translations per month is available from
-https://azure.microsoft.com/free/ as the F0 pricing tier. Once set up
-visit https://ms.portal.azure.com and Create a resource under AI and
-Machine Learning called Text Translations. Once created you can access
-the web API subscription key from the portal. This will be prompted
-for in the demo.
+https://azure.microsoft.com/free/ as the F0 pricing tier. After
+subscribing visit https://ms.portal.azure.com and Create a resource
+under AI and Machine Learning called Text Translations. Once created
+you can access the web API subscription key from the portal. This will
+be prompted for in the demo.
 
 This package is part of the [Azure on
 MLHub](https://github.com/Azure/mlhub) repository. Please note that
