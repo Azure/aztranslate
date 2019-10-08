@@ -48,12 +48,41 @@ a number of useful command line tools.
 
 **Translate Text**
 
+The *translate* command takes a text to be translated and returns the
+identified language code, the certainty of that, the language code for
+the target translation, and the resulting translation.
+
+```console
+$ ml translate aztranslate मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ
+hi,1.00,en,Tell me the most important message this morning
+```
+
+As a command line tool the text to be translated can be piped into the
+command:
+
+```console
+$ echo मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ | ml translate aztranslate
+hi,1.00,en,Tell me the most important message this morning
+```
+
+If no text is supplied on the command line nor through a pipe then the
+program enters an interactive loop:
+
+```console
+$ ml translate aztranslate 
+Enter text to be analysed. Quit with Empty or Ctrl-d.
+
+> मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ?
+hi,1.00,en,Tell me the most important message this morning?
+> 
+```
+
 Different translation engines have had different training experiences
 and thus have different capabilities. For example, Google translates
 the Indonesian *Wah kayak artis Korea* into *Wow, like a Korean
 artist* whilst Azure translates it as *Wah Kayaking Korean
-artist*. This can have an impact on the sentiment analysis, for
-example.
+artist*. This can have an impact on downstream processing such as
+sentiment analysis, for example.
 
 ```console
 $ ml translate aztranslate Wah kayak artis Korea
