@@ -59,9 +59,7 @@ example.
 $ ml translate aztranslate Wah kayak artis Korea
 id,1.0,en,Wah Kayaking Korean artist
 
-$ ml translate aztranslate Wah kayak artis Korea | 
-  cut -d, -f4 |
-  ml sentiment aztext
+$ ml translate aztranslate Wah kayak artis Korea | cut -d, -f4 | ml sentiment aztext
 0.50
 
 $ ml sentiment aztext Wow, like a Korean artist
