@@ -3,7 +3,7 @@ meta:
   name         : aztranslate
   title        : Azure Text Translation cognitive services on the cloud.
   keywords     : azure, text translation, translation, cloud
-  version      : 2.0.1
+  version      : 2.1.0
   languages    : py
   license      : mit
   author       : Graham.Williams@microsoft.com
@@ -11,7 +11,7 @@ meta:
 dependencies:
   pip3: requests, uuid
   files:
-    - https://mlhub.ai/empty.txt: private.py
+    - https://mlhub.ai/empty.txt: private.txt
     - README.md
     - demo.py
     - limits.py
