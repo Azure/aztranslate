@@ -9,27 +9,9 @@
 # https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Python
 #
 
-print("""================================
-Azure Text Translation to English
-=================================
-""")
-
-# Defaults.
-
-KEY_FILE = "private.py"
-
-subscription_key = None
-live = True
-
-# Build the REST API URLs.
-
-base_url = 'https://api.cognitive.microsofttranslator.com'
-
-path     = '/translate?api-version=3.0'
-translate_url = base_url + path
-
-path = '/languages?api-version=3.0'
-languages_url = base_url + path
+# ----------------------------------------------------------------------
+# Setup
+# ----------------------------------------------------------------------
 
 # Import the required libraries.
 
@@ -38,120 +20,90 @@ import os
 import requests
 import uuid
 import json
+import argparse
+import select
+
 from textwrap import fill
+from mlhub.pkg import azkey
 
-# Prompt the user for the key and save into private.py for
-# future runs of the model. The contents of that file is:
-#
-# subscription_key = "a14d...ef24"
+# Defaults.
 
-key_found = os.path.isfile(KEY_FILE)
+SERVICE = "Text Translator"
+KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
 
-if os.path.isfile(KEY_FILE) and os.path.getsize(KEY_FILE) != 0:
-    print("""The following file has been found and is assumed to contain an Azure Text
-Translator subscription key. We will load the file and use this information.
+# ----------------------------------------------------------------------
+# Parse command line arguments
+# ----------------------------------------------------------------------
 
-    """ + os.getcwd() + "/" + KEY_FILE)
-    exec(open(KEY_FILE).read())
-else:
-    print("""An Azure resource is required to access this service (and to run this
-demo). See the README for details of a free subscription. Then you can
-provide the key and the region information here.
-""")
-#If you don't have a key and want to review the canned examples rather
-#than work with the live examples, you can indeed continue simply by 
-#pressing the Enter key.
-#""")
-    sys.stdout.write("Please enter your Text Analytics subscription key []: ")
-    subscription_key = input()
+option_parser = argparse.ArgumentParser(add_help=False)
 
-    if len(subscription_key) > 0:
-        assert subscription_key
-        oKEY_FILE = open(KEY_FILE, "w")
-        oKEY_FILE.write("""subscription_key = "{}"
-assert subscription_key
-    """.format(subscription_key))
-        oKEY_FILE.close()
+option_parser.add_argument(
+    'text',
+    nargs="*",
+    help='text to translate')
 
-        print("""
-I've saved that information into the file:
+args = option_parser.parse_args()
 
-""" + os.getcwd() + "/" + KEY_FILE)
+# ----------------------------------------------------------------------
+# Request subscription key and endpoint from user.
+# ----------------------------------------------------------------------
 
-# Handle canned demonstration.
-    
-# if len(subscription_key) == 0:
-#     live = False
-#     with open(CANNED_PKL, 'rb') as f:
-#         languages, sentiments, key_phrases, entities = pickle.load(f)
-#     sys.stdout.write("""
-# No subscription key was provided so we will continue with a canned
-# demonstration. The analyses from the cloud through the API have previously
-# been captured and so we will use them.
-# """)
-    
+key, endpoint = azkey(KEY_FILE, SERVICE, verbose=False, baseurl=True)
+
+# ----------------------------------------------------------------------
+# Build the REST API URLs.
+# ----------------------------------------------------------------------
+
+path     = '/translate?api-version=3.0'
+translate_url = endpoint + path
+
 headers  = {
-    'Ocp-Apim-Subscription-Key': subscription_key,
+    'Ocp-Apim-Subscription-Key': key,
     'Content-type': 'application/json',
     'X-ClientTraceId': str(uuid.uuid4())
 }  
 
-print("""
-Enter a line of text in any language and we'll attempt to translate it to English.
-
-Exit when no text supplied.
-""")
-      
-
-while True:
-    
-    print("> ", end="")
-
-    text = input()
-
-    if len(text) == 0: break
-    
-    smpl = [{'text': text}]
+def translateText(txt):
+    smpl = [{'text': txt}]
 
     params   = '&to=en'
     request = requests.post(translate_url + params, headers=headers, json=smpl)
     smpl_en = request.json()
 
-    sys.stdout.write("""
-The text was identified as {} with {}% certainty:
+    sys.stdout.write(f"{smpl_en[0]['detectedLanguage']['language']}," +
+                     f"{smpl_en[0]['detectedLanguage']['score']:0.2f}," +
+                     f"{smpl_en[0]['translations'][0]['to']}," +
+                     f"{smpl_en[0]['translations'][0]['text']}")
     
-  {}: {}
+# ------------------------------------------------------------------------
+# Obtain text and translate.
+# ------------------------------------------------------------------------
 
-""".format(smpl_en[0]['detectedLanguage']['language'],
-           round(100*smpl_en[0]['detectedLanguage']['score']),
-           smpl_en[0]['translations'][0]['to'],
-           smpl_en[0]['translations'][0]['text']))
+txt = " ".join(args.text)
 
+if txt != "":
+    translateText(txt)
+    print()
+elif select.select([sys.stdin,],[],[],0.0)[0]:
+    for txt in sys.stdin.readlines():
+        translateText(txt)
+else:
+    print("Enter text to be analysed. Quit with Empty or Ctrl-d.\n")
+    prompt = '> '
+    try:
+        txt = input(prompt)
+    except EOFError:
+        print()
+        sys.exit(0)
 
-# sys.stdout.write(fill(hof_fr[0]['translations'][0]['text']))
+    while txt != '':
 
-# sys.stdout.write("""
+        translateText(txt)
 
-# *** Translating back to English demonstrates a shallow understanding:
+        try:
+            print()
+            txt = input(prompt)
+        except EOFError:
+            print()
+            sys.exit(0)
 
-# """)
-
-# if live:
-#     params   = '&to=en'
-#     request = requests.post(translate_url + params, headers=headers, json=hof_fr[0]['translations'])
-#     hof_en = request.json()
-
-# sys.stdout.write(fill(hof_en[0]['translations'][0]['text']))
-# print()
-
-# # Google had: 
-# #
-# #     Dans leur maison, tout vient en paires. Il y a sa voiture et sa
-# #     voiture, ses serviettes et ses serviettes, sa bibliothèque et
-# #     les siennes.
-# #
-# #     Then
-# #
-# #     At home, they have everything in double. There is his own car
-# #     and his own car, his own towels and his own towels, his own
-# #     library and his own library.
