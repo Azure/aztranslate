@@ -7,11 +7,12 @@ languages, also identifying the source language. Many languages are
 supported.
 
 A free Azure subscription allowing up to 2,000,000 character
-transactions is available from https://azure.microsoft.com/free/. Once
-set up visit https://ms.portal.azure.com and Create a resource under
-AI and Machine Learning called Text Translations. Once created you can
-access the web API subscription key from the portal. This will be
-prompted for in the demo.
+translations per month is available from
+https://azure.microsoft.com/free/ as the F0 pricing tier. Once set up
+visit https://ms.portal.azure.com and Create a resource under AI and
+Machine Learning called Text Translations. Once created you can access
+the web API subscription key from the portal. This will be prompted
+for in the demo.
 
 This package is part of the [Azure on
 MLHub](https://github.com/Azure/mlhub) repository. Please note that
@@ -27,17 +28,43 @@ Start](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quic
 
 ## Usage
 
-- To install mlhub 
+- To install mlhub (Ubuntu 18.04 LTS)
 
-        $ pip3 install mlhub
+```console
+$ pip3 install mlhub
+```
 
-- To install and run the pre-built model:
+- To install and configure the demo:
 
-		$ ml install   aztranslate
-		$ ml configure aztranslate
-		$ ml demo      aztranslate
-		$ ml translate aztranslate
-		$ ml limits    aztranslate
+```console
+$ ml install   aztranslate
+$ ml configure aztranslate
+```
+
+## Command Line Tools
+
+In addition to the *demo* presented below, the *azcv* package provides
+a number of useful command line tools.
+
+**Translate Text**
+
+Different translation engines have had different training experiences
+and thus have different capabilities. For example, Google translates
+the Indonesian *Wah kayak artis Korea* into *Wow, like a Korean
+artist* whilst Azure translates it as *Wah Kayaking Korean
+artist*. This can have an impact on the sentiment analysis, for
+example.
+
+```console
+$ ml translate aztranslate Wah kayak artis Korea
+Wah Kayaking Korean artist
+
+$ ml translate aztranslate Wah kayak artis Korea | ml sentiment aztext
+0.50
+
+$ ml sentiment aztext Wow, like a Korean artist
+0.97
+```
 
 ## Demonstration
 
