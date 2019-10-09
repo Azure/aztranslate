@@ -120,7 +120,7 @@ zh-Hant,ltr,Chinese Traditional,繁體中文
 To check if a specific language is supported:
 
 ```console
-$ ml supported aztranslatefr
+$ ml supported aztranslate fr
 fr,ltr,French,Français
 
 $ ml supported aztext ku
