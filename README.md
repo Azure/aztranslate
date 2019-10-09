@@ -139,8 +139,7 @@ fr,ltr,French,Français
 
 The *translate* command takes a text to be translated and returns the
 identified language code, the certainty of that, the language code for
-the target translation, and the resulting translation **into English**
-only for now.
+the target translation, and the resulting translation.
 
 ```console
 $ ml translate aztranslate मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ
@@ -165,6 +164,17 @@ Enter text to be analysed. Quit with Empty or Ctrl-d.
 > मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ?
 hi,1.00,en,Tell me the most important message this morning?
 > 
+```
+
+The default is to translate into English (en). Other languages can be
+chosen:
+
+```console
+$ ml translate aztranslate --to=id मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ
+hi,1.00,id,Ceritakan pesan yang paling penting pagi ini
+
+$ ml translate aztranslate --to=fr मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ
+hi,1.00,fr,Dites-moi le message le plus important ce matin
 ```
 
 Different translation engines have had different training experiences
