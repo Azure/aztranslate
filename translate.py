@@ -31,7 +31,7 @@ SERVICE = "Text Translator"
 KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
 
 # ----------------------------------------------------------------------
-# Parse command line arguments
+# Parse command line arguments: text
 # ----------------------------------------------------------------------
 
 option_parser = argparse.ArgumentParser(add_help=False)
