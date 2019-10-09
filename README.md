@@ -43,14 +43,104 @@ $ ml configure aztranslate
 
 ## Command Line Tools
 
-In addition to the *demo* presented below, the *azcv* package provides
+In addition to the *demo* presented below, the *aztranslate* package provides
 a number of useful command line tools.
+
+**Supported Languages**
+
+The *supported* command is useful in checking which languages are
+supported for translation.
+
+```console
+$ ml supported aztranslate
+af,ltr,Afrikaans,Afrikaans
+ar,rtl,Arabic,العربية
+bg,ltr,Bulgarian,Български
+bn,ltr,Bangla,বাংলা
+bs,ltr,Bosnian,bosanski (latinica)
+ca,ltr,Catalan,Català
+cs,ltr,Czech,Čeština
+cy,ltr,Welsh,Welsh
+da,ltr,Danish,Dansk
+de,ltr,German,Deutsch
+el,ltr,Greek,Ελληνικά
+en,ltr,English,English
+es,ltr,Spanish,Español
+et,ltr,Estonian,Eesti
+fa,rtl,Persian,Persian
+fi,ltr,Finnish,Suomi
+fil,ltr,Filipino,Filipino
+fj,ltr,Fijian,Fijian
+fr,ltr,French,Français
+he,rtl,Hebrew,עברית
+hi,ltr,Hindi,हिंदी
+hr,ltr,Croatian,Hrvatski
+ht,ltr,Haitian Creole,Haitian Creole
+hu,ltr,Hungarian,Magyar
+id,ltr,Indonesian,Indonesia
+is,ltr,Icelandic,Íslenska
+it,ltr,Italian,Italiano
+ja,ltr,Japanese,日本語
+ko,ltr,Korean,한국어
+lt,ltr,Lithuanian,Lietuvių
+lv,ltr,Latvian,Latviešu
+mg,ltr,Malagasy,Malagasy
+ms,ltr,Malay,Melayu
+mt,ltr,Maltese,Il-Malti
+mww,ltr,Hmong Daw,Hmong Daw
+nb,ltr,Norwegian,Norsk
+nl,ltr,Dutch,Nederlands
+otq,ltr,Querétaro Otomi,Querétaro Otomi
+pl,ltr,Polish,Polski
+pt,ltr,Portuguese,Português
+ro,ltr,Romanian,Română
+ru,ltr,Russian,Русский
+sk,ltr,Slovak,Slovenčina
+sl,ltr,Slovenian,Slovenščina
+sm,ltr,Samoan,Samoan
+sr-Cyrl,ltr,Serbian (Cyrillic),srpski (ćirilica)
+sr-Latn,ltr,Serbian (Latin),srpski (latinica)
+sv,ltr,Swedish,Svenska
+sw,ltr,Kiswahili,Kiswahili
+ta,ltr,Tamil,தமிழ்
+te,ltr,Telugu,తెలుగు
+th,ltr,Thai,ไทย
+tlh,ltr,Klingon,Klingon
+to,ltr,Tongan,lea fakatonga
+tr,ltr,Turkish,Türkçe
+ty,ltr,Tahitian,Tahitian
+uk,ltr,Ukrainian,Українська
+ur,rtl,Urdu,اردو
+vi,ltr,Vietnamese,Tiếng Việt
+yua,ltr,Yucatec Maya,Yucatec Maya
+yue,ltr,Cantonese (Traditional),粵語 (繁體中文)
+zh-Hans,ltr,Chinese Simplified,简体中文
+zh-Hant,ltr,Chinese Traditional,繁體中文
+```
+To check if a specific language is supported:
+
+```console
+$ ml supported aztranslatefr
+fr,ltr,French,Français
+
+$ ml supported aztext ku
+```
+
+Use the `--header` command line option to list the header row which
+names the columns:
+
+```console
+$ ml supported aztext --header fr
+code,direction,name,native
+fr,ltr,French,Français
+```
 
 **Translate Text**
 
 The *translate* command takes a text to be translated and returns the
 identified language code, the certainty of that, the language code for
-the target translation, and the resulting translation.
+the target translation, and the resulting translation **into English**
+only for now.
 
 ```console
 $ ml translate aztranslate मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ
