@@ -4,7 +4,8 @@ This [MLHub](https://mlhub.ai) package provides a quick introduction
 to the pre-built Text Translation models provided through Azure's
 Cognitive Services. This service translates text between multiple
 languages, also identifying the source language. Many languages are
-supported.
+supported. This package is part of the [Azure on
+MLHub](https://github.com/Azure/mlhub) repository.
 
 A free Azure subscription allowing up to 2,000,000 character
 translations per month is available from
@@ -14,11 +15,10 @@ under AI and Machine Learning called Text Translations. Once created
 you can access the web API subscription key from the portal. This will
 be prompted for in the demo.
 
-This package is part of the [Azure on
-MLHub](https://github.com/Azure/mlhub) repository. Please note that
-these Azure models, unlike the MLHub models in general, use *closed
-source services* which have no guarantee of ongoing availability and
-do not come with the freedom to modify and share.
+Please note that these Azure models, unlike the MLHub models in
+general, use *closed source services* which have no guarantee of
+ongoing availability and do not come with the freedom to modify and
+share.
 
 Visit the github repository for more details:
 <https://github.com/Azure/aztranslate>
