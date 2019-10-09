@@ -4,34 +4,29 @@
 # Licensed under the MIT License.
 # Author: Graham.Williams@togaware.com
 #
-# This demo is based on the Azure Cognitive Services Translator Quick Starts
+# A comman line script to translate text
+#
+# ml translate aztranslate [<text>]
 # 
 # https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Python
 #
 
 # ----------------------------------------------------------------------
-# Setup
-# ----------------------------------------------------------------------
-
 # Import the required libraries.
+# ----------------------------------------------------------------------
 
 import sys
 import os
+import argparse
+
 import requests
 import uuid
 import json
-import argparse
 
-from textwrap import fill
 from mlhub.pkg import azkey
 
-# Defaults.
-
-SERVICE = "Text Translator"
-KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
-
 # ----------------------------------------------------------------------
-# Parse command line arguments: text
+# Parse command line arguments: text to
 # ----------------------------------------------------------------------
 
 option_parser = argparse.ArgumentParser(add_help=False)
@@ -41,11 +36,20 @@ option_parser.add_argument(
     nargs="*",
     help='text to translate')
 
+option_parser.add_argument(
+    '-t', '--to',
+    help='target language')
+
 args = option_parser.parse_args()
+
+to = "en" if args.to == None else args.to
 
 # ----------------------------------------------------------------------
 # Request subscription key and endpoint from user.
 # ----------------------------------------------------------------------
+
+SERVICE = "Text Translator"
+KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
 
 key, endpoint = azkey(KEY_FILE, SERVICE, verbose=False, baseurl=True)
 
@@ -62,10 +66,14 @@ headers  = {
     'X-ClientTraceId': str(uuid.uuid4())
 }  
 
-def translateText(txt):
+# ------------------------------------------------------------------------
+# Helper function.
+# ------------------------------------------------------------------------
+
+def translateText(txt, to):
     smpl = [{'text': txt}]
 
-    params   = '&to=en'
+    params   = '&to=' + to
     request = requests.post(translate_url + params, headers=headers, json=smpl)
     smpl_en = request.json()
 
@@ -75,17 +83,17 @@ def translateText(txt):
                      f"{smpl_en[0]['translations'][0]['text']}")
     
 # ------------------------------------------------------------------------
-# Obtain text and translate.
+# Translate text obtained from command line, pipe, or interactively.
 # ------------------------------------------------------------------------
 
 txt = " ".join(args.text)
 
 if txt != "":
-    translateText(txt)
+    translateText(txt, to)
     print()
 elif not sys.stdin.isatty():
     for txt in sys.stdin.readlines():
-        translateText(txt)
+        translateText(txt, to)
 else:
     print("Enter text to be analysed. Quit with Empty or Ctrl-d.\n")
     prompt = '> '
@@ -94,11 +102,8 @@ else:
     except EOFError:
         print()
         sys.exit(0)
-
     while txt != '':
-
-        translateText(txt)
-
+        translateText(txt, to)
         try:
             print()
             txt = input(prompt)
