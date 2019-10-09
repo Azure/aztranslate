@@ -70,7 +70,7 @@ response = requests.get(url, headers=headers)
 response = response.json()
 translations = response['translation']
 
-if args.header: print("code,direction,name,native_name")
+if args.header: print("code,direction,name,native")
 
 for l in translations:
     t = translations[l]
