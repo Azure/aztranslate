@@ -46,7 +46,7 @@ $ ml configure aztranslate
 In addition to the *demo* presented below, the *aztranslate* package provides
 a number of useful command line tools.
 
-**Supported Languages**
+**Supported**
 
 The *supported* command is useful in checking which languages are
 supported for translation.
@@ -135,7 +135,7 @@ code,direction,name,native
 fr,ltr,French,Français
 ```
 
-**Translate Text**
+**Translate**
 
 The *translate* command takes a text to be translated and returns the
 identified language code, the certainty of that, the language code for
@@ -193,6 +193,21 @@ $ ml translate aztranslate Wah kayak artis Korea | cut -d, -f4 | ml sentiment az
 
 $ ml sentiment aztext Wow, like a Korean artist
 0.97
+```
+
+**Transliterate**
+
+The *transliterate* command takes a text to be transliterated, for
+example into Latin characters, retaining the phonetics. This command
+is under development and currently only supports transliteration from
+Thai script to Latin script for illustrative purposes.
+
+```console
+$ ml transliterate aztranslate คั่ว กลิ้ง แกง ยอด มะพร้าว อ่อน ใส่ ไก่
+khua kling kaeng yot maphrao on sai kai
+
+$ ml translate aztranslate คั่ว กลิ้ง แกง ยอด มะพร้าว อ่อน ใส่ ไก่
+th,1.00,en,Roasted Coconut curry with chicken
 ```
 
 ## Demonstration
