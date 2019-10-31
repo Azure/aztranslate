@@ -40,6 +40,11 @@ option_parser.add_argument(
     '-t', '--to',
     help='target language')
 
+option_parser.add_argument(
+    '-k', '--keep',
+    action="store_true",
+    help='keep original text in output')
+
 args = option_parser.parse_args()
 
 to = "en" if args.to == None else args.to
@@ -79,8 +84,12 @@ def translateText(txt, to):
 
     sys.stdout.write(f"{smpl_en[0]['detectedLanguage']['language']}," +
                      f"{smpl_en[0]['detectedLanguage']['score']:0.2f}," +
-                     f"{smpl_en[0]['translations'][0]['to']}," +
-                     f"{smpl_en[0]['translations'][0]['text']}")
+                     f"{smpl_en[0]['translations'][0]['to']}," )
+
+    if args.keep:
+        sys.stdout.write(f"{txt.rstrip()},")
+        
+    sys.stdout.write(f"{smpl_en[0]['translations'][0]['text']}")
     
 # ------------------------------------------------------------------------
 # Translate text obtained from command line, pipe, or interactively.
