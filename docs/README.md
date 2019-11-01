@@ -166,6 +166,25 @@ hi,1.00,en,Tell me the most important message this morning?
 > 
 ```
 
+If a file name is supplied then each line within the file is
+translated, line by line:
+
+```console
+python3 translate.py thai_menu.txt
+th,1.00,en,Congee
+th,1.00,en,Rice Omelet
+th,1.00,en,Fried Rice with Hell Chili
+th,1.00,en,Boiled rice
+th,1.00,en,Hobo Boiled Rice
+th,1.00,en,Duck dried noodles
+th,1.00,en,Beef Noodle with Stomatitis
+th,1.00,en,Drunken Fried Noodles
+th,1.00,en,Massaman Curry
+th,1.00,en,Vegetable Curry with fish
+th,1.00,en,Coconut Curry with Chicken
+th,1.00,en,Curry Sensuous
+```
+
 The default is to translate into English (en). Other languages can be
 chosen:
 
