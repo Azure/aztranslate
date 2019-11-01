@@ -162,18 +162,6 @@ $ echo मुझे सबसे महत्वपूर्ण संदेश 
 hi,1.00,en,Tell me the most important message this morning
 ```
 
-If no text is supplied on the command line nor through a pipe then the
-program enters an interactive loop:
-
-```console
-$ ml translate aztranslate 
-Enter text to be analysed. Quit with Empty or Ctrl-d.
-
-> मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ?
-hi,1.00,en,Tell me the most important message this morning?
-> 
-```
-
 If a file name is supplied then each line within the file is
 translated, line by line:
 
@@ -205,6 +193,25 @@ th,1.00,en,ข้าวหมกเนื้อ,Beef Porridge
 th,1.00,en,ข้าวมันไก่,Chicken Rice
 th,1.00,en,ข้าวหมูกรอบ,Crispy pork rice
 th,1.00,en,ข้าวหมูกรอบหมูแดง,Red Pork crispy Pork rice
+```
+
+If no text is supplied on the command line nor through a pipe nor from
+a specified file then the program enters an interactive loop:
+
+```console
+$ ml translate aztranslate
+Enter text to be analysed. Quit with Empty or Ctrl-d.
+
+> मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ?
+hi,1.00,en,Tell me the most important message this morning?
+
+> ข้าวคลุกกะปิ
+th,1.00,en,Fried rice with shrimp paste
+
+> Di mana toko yang baik untuk membeli ponsel?
+id,1.00,en,Where is a good store to buy mobile phones?
+
+> 
 ```
 
 The default is to translate into English (en). Other languages can be
