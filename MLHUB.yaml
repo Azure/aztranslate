@@ -12,7 +12,7 @@ dependencies:
   pip3: requests, uuid
   files:
     - https://mlhub.ai/empty.txt: private.txt
-    - README.md
+    - docs/README.md: README.md
     - demo.py
     - supported.py
     - limits.py
