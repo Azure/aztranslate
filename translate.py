@@ -24,6 +24,7 @@ import uuid
 import json
 
 from mlhub.pkg import azkey
+from mlhub.utils import get_cmd_cwd
 
 # ----------------------------------------------------------------------
 # Parse command line arguments: text --to --keep
@@ -99,8 +100,10 @@ def helper(txt, to):
 
 txt = " ".join(args.text)
 
-if len(args.text) == 1 and os.path.isfile(txt):
-    with open(txt) as f:
+fname = os.path.join(get_cmd_cwd(), txt)
+
+if len(args.text) == 1 and os.path.isfile(fname):
+    with open(fname) as f:
         lines = f.readlines()
     lines = [x.strip() for x in lines]
     for l in lines:
