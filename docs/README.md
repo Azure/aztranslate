@@ -178,19 +178,33 @@ If a file name is supplied then each line within the file is
 translated, line by line:
 
 ```console
-python3 translate.py thai_menu.txt
+$ ml translate aztranslate thai.txt
 th,1.00,en,Congee
+th,1.00,en,Rice kan Chin
+th,1.00,en,Pork Leg Rice
 th,1.00,en,Rice Omelet
-th,1.00,en,Fried Rice with Hell Chili
-th,1.00,en,Boiled rice
-th,1.00,en,Hobo Boiled Rice
-th,1.00,en,Duck dried noodles
-th,1.00,en,Beef Noodle with Stomatitis
-th,1.00,en,Drunken Fried Noodles
-th,1.00,en,Massaman Curry
-th,1.00,en,Vegetable Curry with fish
-th,1.00,en,Coconut Curry with Chicken
-th,1.00,en,Curry Sensuous
+th,1.00,en,Fried rice with shrimp paste
+th,1.00,en,Kao Mok Chicken
+th,1.00,en,Beef Porridge
+th,1.00,en,Chicken Rice
+th,1.00,en,Crispy pork rice
+th,1.00,en,Red Pork crispy Pork rice
+```
+
+Use the --keep command line option to retain the original text:
+
+```console
+$ ml translate aztranslate --keep scratch/thai_menu.txt
+th,1.00,en,โจ๊ก,Congee
+th,1.00,en,ข้าวกั๊นจิ๊น,Rice kan Chin
+th,1.00,en,ข้าวขาหมู,Pork Leg Rice
+th,1.00,en,ข้าวไข่เจียว,Rice Omelet
+th,1.00,en,ข้าวคลุกกะปิ,Fried rice with shrimp paste
+th,1.00,en,ข้าวหมกไก่,Kao Mok Chicken
+th,1.00,en,ข้าวหมกเนื้อ,Beef Porridge
+th,1.00,en,ข้าวมันไก่,Chicken Rice
+th,1.00,en,ข้าวหมูกรอบ,Crispy pork rice
+th,1.00,en,ข้าวหมูกรอบหมูแดง,Red Pork crispy Pork rice
 ```
 
 The default is to translate into English (en). Other languages can be
