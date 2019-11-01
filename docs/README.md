@@ -7,13 +7,18 @@ languages, also identifying the source language. Many languages are
 supported. This package is part of the [Azure on
 MLHub](https://github.com/Azure/mlhub) repository.
 
+In addition to the *demo* command this package provides a collection
+of commands that turn the service into useful *command line tools* for
+translation and transliteration.
+
 A free Azure subscription allowing up to 2,000,000 character
 translations per month is available from
 https://azure.microsoft.com/free/ as the F0 pricing tier. After
 subscribing visit https://ms.portal.azure.com and Create a resource
 under AI and Machine Learning called Text Translations. Once created
-you can access the web API subscription key from the portal. This will
-be prompted for in the demo.
+you can access the web API subscription key and endpoint from the
+portal. This will be prompted for when running a command, and then
+saved to file to reduce the need for repeated authentication requests.
 
 Please note that these Azure models, unlike the MLHub models in
 general, use *closed source services* which have no guarantee of
@@ -21,7 +26,7 @@ ongoing availability and do not come with the freedom to modify and
 share.
 
 Visit the github repository for more details:
-<https://github.com/Azure/aztranslate>
+<https://github.com/azure/aztranslate>
 
 The Python code is based on the [Azure Text Translator Quick
 Start](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-python-translate)
@@ -44,7 +49,10 @@ $ ml configure aztranslate
 ## Command Line Tools
 
 In addition to the *demo* presented below, the *aztranslate* package provides
-a number of useful command line tools.
+a number of useful command line tools. Below we demonstrate a number
+of these. Most commands take text on the command line, piped through
+to the command, from a supplied file, or else through an interactive
+session.
 
 **Supported**
 
