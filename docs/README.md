@@ -186,7 +186,7 @@ th,Thai,ไทย,Thai:Latn Latn:Thai
 zh-Hans,Chinese Simplified,简体中文,Hans:Latn Hans:Hant Latn:Hans Latn:Hant 
 zh-Hant,Chinese Traditional,繁體中文,Hant:Latn Hant:Hans Latn:Hans Latn:Hant 
 ```
-The 4 letter script names are reported are paired in a from:to
+The 4 letter script names are reported paired in a from:to
 ordering.
 
 **Translate**
