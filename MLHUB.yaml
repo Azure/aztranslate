@@ -20,7 +20,7 @@ dependencies:
     - transliterate.py
 commands:
   demo: Demonstrate the functionality of text translator.
-  supported: List the supported lanagues.
+  supported: List the supported languages.
   limits: Discuss limitations of deep learning with shallow AI.
   translate: Use the model to translate user provided text.
   transliterate: Generate the phonetics for the provided text.
