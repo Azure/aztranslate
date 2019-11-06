@@ -15,12 +15,14 @@ dependencies:
     - docs/README.md: README.md
     - demo.py
     - supported.py
-    - limits.py
+    - detect.py
     - translate.py
     - transliterate.py
+    - limits.py
 commands:
   demo: Demonstrate the functionality of text translator.
   supported: List the supported languages.
-  limits: Discuss limitations of deep learning with shallow AI.
+  detect : Detect the language of supplied text.
   translate: Use the model to translate user provided text.
   transliterate: Generate the phonetics for the provided text.
+  limits: Discuss limitations of deep learning with shallow AI.
