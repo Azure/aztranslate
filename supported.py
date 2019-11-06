@@ -39,6 +39,10 @@ option_parser.add_argument(
     '--header',
     action='store_true')
 
+option_parser.add_argument(
+    '--transliteration',
+    action='store_true')
+
 args = option_parser.parse_args()
 
 # ----------------------------------------------------------------------
@@ -68,11 +72,24 @@ headers = {
 
 response = requests.get(url, headers=headers)
 response = response.json()
-translations = response['translation']
 
-if args.header: print("code,direction,name,native")
-
-for l in translations:
-    t = translations[l]
-    if args.language == None or args.language in l:
-        print(f"{l},{t['dir']},{t['name']},{t['nativeName']}")
+if args.transliteration:
+    translations = response['transliteration']
+    if args.header: print("code,direction,name,native")
+    for l in translations:
+        t = translations[l]
+        # print(json.dumps(t, indent=2))
+        if args.language == None or args.language in l:
+            print(f"{l},{t['name']},{t['nativeName']},", end="")
+            if 'scripts' in t:
+                for s in t['scripts']:
+                    for ts in s['toScripts']:
+                        print(f"{s['code']}:{ts['code']} ", end="")
+        print()
+else:
+    translations = response['translation']
+    if args.header: print("code,direction,name,native")
+    for l in translations:
+        t = translations[l]
+        if args.language == None or args.language in l:
+            print(f"{l},{t['dir']},{t['name']},{t['nativeName']}")
