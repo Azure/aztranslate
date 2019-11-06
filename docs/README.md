@@ -143,6 +143,52 @@ code,direction,name,native
 fr,ltr,French,Français
 ```
 
+The --transliterate option will identify the transliteration pairs
+available for each language.
+
+```console
+$ ml supported aztranslate --transliterate
+ar,Arabic,العربية,Arab-Latn Latn-Arab 
+bn,Bangla,বাংলা,Beng-Latn Latn-Beng 
+gu,Gujarati,ગુજરાતી,Gujr-Latn Latn-Gujr 
+he,Hebrew,עברית,Hebr-Latn Latn-Hebr 
+hi,Hindi,हिंदी,Deva-Latn Latn-Deva 
+ja,Japanese,日本語,Jpan-Latn Latn-Jpan 
+kn,Kannada,ಕನ್ನಡ,Knda-Latn Latn-Knda 
+ml,Malayalam,മലയാളം,Mlym-Latn Latn-Mlym 
+mr,Marathi,मराठी,Deva-Latn Latn-Deva 
+or,Oriya,Oriya,Orya-Latn Latn-Orya 
+pa,Punjabi,ਪੰਜਾਬੀ,Guru-Latn Latn-Guru 
+sr-Cyrl,Serbian (Cyrillic),srpski (ćirilica),Cyrl-Latn 
+sr-Latn,Serbian (Latin),srpski (latinica),Latn-Cyrl 
+ta,Tamil,தமிழ்,Taml-Latn Latn-Taml 
+te,Telugu,తెలుగు,Telu-Latn Latn-Telu 
+th,Thai,ไทย,Thai-Latn Latn-Thai 
+zh-Hans,Chinese Simplified,简体中文,Hans-Latn Hans-Hant Latn-Hans Latn-Hant 
+zh-Hant,Chinese Traditional,繁體中文,Hant-Latn Hant-Hans Latn-Hans Latn-Hant 
+06 Nov 17:38:23 gjw@yoga ~azure/aztranslate$ python3 supported.py --transliteration
+ar,Arabic,العربية,Arab:Latn Latn:Arab 
+bn,Bangla,বাংলা,Beng:Latn Latn:Beng 
+gu,Gujarati,ગુજરાતી,Gujr:Latn Latn:Gujr 
+he,Hebrew,עברית,Hebr:Latn Latn:Hebr 
+hi,Hindi,हिंदी,Deva:Latn Latn:Deva 
+ja,Japanese,日本語,Jpan:Latn Latn:Jpan 
+kn,Kannada,ಕನ್ನಡ,Knda:Latn Latn:Knda 
+ml,Malayalam,മലയാളം,Mlym:Latn Latn:Mlym 
+mr,Marathi,मराठी,Deva:Latn Latn:Deva 
+or,Oriya,Oriya,Orya:Latn Latn:Orya 
+pa,Punjabi,ਪੰਜਾਬੀ,Guru:Latn Latn:Guru 
+sr-Cyrl,Serbian (Cyrillic),srpski (ćirilica),Cyrl:Latn 
+sr-Latn,Serbian (Latin),srpski (latinica),Latn:Cyrl 
+ta,Tamil,தமிழ்,Taml:Latn Latn:Taml 
+te,Telugu,తెలుగు,Telu:Latn Latn:Telu 
+th,Thai,ไทย,Thai:Latn Latn:Thai 
+zh-Hans,Chinese Simplified,简体中文,Hans:Latn Hans:Hant Latn:Hans Latn:Hant 
+zh-Hant,Chinese Traditional,繁體中文,Hant:Latn Hant:Hans Latn:Hans Latn:Hant 
+```
+The 4 letter script names are reported are paired in a from:to
+ordering.
+
 **Translate**
 
 The *translate* command takes a text to be translated and returns the
