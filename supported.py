@@ -40,7 +40,9 @@ option_parser.add_argument(
     action='store_true')
 
 option_parser.add_argument(
+    '--transliterate',
     '--transliteration',
+    '--lit',
     action='store_true')
 
 args = option_parser.parse_args()
@@ -73,7 +75,7 @@ headers = {
 response = requests.get(url, headers=headers)
 response = response.json()
 
-if args.transliteration:
+if args.transliterate:
     translations = response['transliteration']
     if args.header: print("code,direction,name,native")
     for l in translations:
