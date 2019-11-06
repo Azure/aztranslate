@@ -304,6 +304,19 @@ $ ml translate aztranslate คั่ว กลิ้ง แกง ยอด ม�
 th,1.00,en,Roasted Coconut curry with chicken
 ```
 
+Normally the LANGUAGE can be automatically determined and the first
+script language reported by the SUPPORTED --transliterate command is
+the default FROM script. The default TO script is Latin. Command line
+options can be used to specify the LANGUAGE, the FROM script and the
+TO script if required. This is also useful to remove additional API
+calls (to determine the language and the default FROM script) for each
+query.
+
+```console
+$ ml transliterate aztranslate -l th -f thai -t latn คั่ว กลิ้ง แกง ยอด มะพร้าว อ่อน ใส่ ไก่
+khua kling kaeng yot maphrao on sai kai
+```
+
 ## Demonstration
 
 ```console
