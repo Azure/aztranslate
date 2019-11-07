@@ -314,7 +314,7 @@ query.
 
 ```console
 $ ml transliterate aztranslate -l th -f thai -t latn คั่ว กลิ้ง แกง ยอด มะพร้าว อ่อน ใส่ ไก่
-khua kling kaeng yot maphrao on sai kai
+th,thai,latn,khua kling kaeng yot maphrao on sai kai
 ```
 
 ## Demonstration
