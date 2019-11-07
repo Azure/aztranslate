@@ -42,6 +42,11 @@ option_parser.add_argument(
     help='target language')
 
 option_parser.add_argument(
+    '-p', '--profanity',
+    action="store_true",
+    help='remove profanity')
+
+option_parser.add_argument(
     '-k', '--keep',
     action="store_true",
     help='keep original text in output')
@@ -82,6 +87,9 @@ def helper(txt, to):
     smpl = [{'text': txt}]
 
     params   = '&to=' + to
+    if args.profanity:
+        params = params + "&ProfanityAction=Marked&ProfanityMarker=Asterisk"
+    print(params)
     request = requests.post(url + params, headers=headers, json=smpl)
     result = request.json()
 
