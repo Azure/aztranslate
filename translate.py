@@ -83,16 +83,16 @@ def helper(txt, to):
 
     params   = '&to=' + to
     request = requests.post(url + params, headers=headers, json=smpl)
-    smpl_en = request.json()
+    result = request.json()
 
-    sys.stdout.write(f"{smpl_en[0]['detectedLanguage']['language']}," +
-                     f"{smpl_en[0]['detectedLanguage']['score']:0.2f}," +
-                     f"{smpl_en[0]['translations'][0]['to']}," )
+    sys.stdout.write(f"{result[0]['detectedLanguage']['language']}," +
+                     f"{result[0]['detectedLanguage']['score']:0.2f}," +
+                     f"{result[0]['translations'][0]['to']}," )
 
     if args.keep:
         sys.stdout.write(f"{txt.rstrip()},")
         
-    sys.stdout.write(f"{smpl_en[0]['translations'][0]['text']}")
+    sys.stdout.write(f"{result[0]['translations'][0]['text']}")
     
 # ------------------------------------------------------------------------
 # Translate text obtained from command line, pipe, or interactively.
