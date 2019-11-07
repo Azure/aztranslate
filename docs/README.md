@@ -54,7 +54,7 @@ of these. Most commands take text on the command line, piped through
 to the command, from a supplied file, or else through an interactive
 session.
 
-**Supported**
+**supported**
 
 The *supported* command is useful in checking which languages are
 supported for translation.
@@ -189,7 +189,18 @@ zh-Hant,Chinese Traditional,繁體中文,Hant:Latn Hant:Hans Latn:Hans Latn:Hant
 The 4 letter script names are reported paired in a from:to
 ordering.
 
-**Translate**
+**detect**
+
+The *detect* command will identify the language of a provided text,
+the confidence of the detection, and whether translation and
+transliteration are supported for that language.
+
+```console
+$ ml detect aztranslate उनकी कविता में प्रकृति के सौंदर्य और कोमलतम मानवीय भावनाओं का उत्कृष्ट चित्रण है.
+hi,1.00,True,True
+```
+
+**translate**
 
 The *translate* command takes a text to be translated and returns the
 identified language code, the certainty of that, the language code for
@@ -198,6 +209,9 @@ the target translation, and the resulting translation.
 ```console
 $ ml translate aztranslate मुझे सबसे महत्वपूर्ण संदेश आज सुबह बताओ
 hi,1.00,en,Tell me the most important message this morning
+
+$ ml translate aztranslate उनकी कविता में प्रकृति के सौंदर्य और कोमलतम मानवीय भावनाओं का उत्कृष्ट चित्रण है.
+hi,1.00,en,His poetry has excellent depictions of nature's beauty and the softest human emotions.
 ```
 
 As a command line tool the text to be translated can be piped into the
@@ -289,7 +303,7 @@ $ ml sentiment aztext Wow, like a Korean artist
 0.97
 ```
 
-**Transliterate**
+**transliterate**
 
 The *transliterate* command takes a text to be transliterated, for
 example into Latin characters, retaining the phonetics. This command
