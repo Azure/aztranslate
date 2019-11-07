@@ -89,7 +89,7 @@ def helper(txt, to):
     params   = '&to=' + to
     if args.profanity:
         params = params + "&ProfanityAction=Marked&ProfanityMarker=Asterisk"
-    print(params)
+    # print(params)
     request = requests.post(url + params, headers=headers, json=smpl)
     result = request.json()
 
