@@ -239,7 +239,7 @@ th,1.00,en,Crispy pork rice
 th,1.00,en,Red Pork crispy Pork rice
 ```
 
-Use the --keep command line option to retain the original text:
+Use the *--keep* command line option to retain the original text:
 
 ```console
 $ ml translate aztranslate --keep scratch/thai_menu.txt
@@ -254,6 +254,9 @@ th,1.00,en,ข้าวมันไก่,Chicken Rice
 th,1.00,en,ข้าวหมูกรอบ,Crispy pork rice
 th,1.00,en,ข้าวหมูกรอบหมูแดง,Red Pork crispy Pork rice
 ```
+
+The *--profanity* command line option with replace any identified
+profanities in the translation with asterisks.
 
 If no text is supplied on the command line nor through a pipe nor from
 a specified file then the program enters an interactive loop:
