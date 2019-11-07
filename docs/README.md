@@ -134,7 +134,7 @@ fr,ltr,French,Français
 $ ml supported aztext ku
 ```
 
-Use the `--header` command line option to list the header row which
+Use the *--header* command line option to list the header row which
 names the columns:
 
 ```console
@@ -143,7 +143,7 @@ code,direction,name,native
 fr,ltr,French,Français
 ```
 
-The --transliterate option will identify the transliteration pairs
+The *--transliterate* option will identify the transliteration pairs
 available for each language.
 
 ```console
@@ -255,7 +255,7 @@ th,1.00,en,ข้าวหมูกรอบ,Crispy pork rice
 th,1.00,en,ข้าวหมูกรอบหมูแดง,Red Pork crispy Pork rice
 ```
 
-The *--profanity* command line option with replace any identified
+The *--profanity* command line option will replace any identified
 profanities in the translation with asterisks.
 
 If no text is supplied on the command line nor through a pipe nor from
@@ -322,7 +322,7 @@ th,1.00,en,Roasted Coconut curry with chicken
 ```
 
 Normally the LANGUAGE can be automatically determined and the first
-script language reported by the SUPPORTED --transliterate command is
+script language reported by the *supported --transliterate* command is
 the default FROM script. The default TO script is Latin. Command line
 options can be used to specify the LANGUAGE, the FROM script and the
 TO script if required. This is also useful to remove additional API
