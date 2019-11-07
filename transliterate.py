@@ -41,7 +41,7 @@ option_parser.add_argument(
     help='language')
 
 option_parser.add_argument(
-    '-f', '--from',
+    '-f', '--source', '--from',
     help='source script')
 
 option_parser.add_argument(
@@ -54,6 +54,10 @@ option_parser.add_argument(
     help='keep original text in output')
 
 args = option_parser.parse_args()
+
+lang = args.lang
+fr   = args.source
+to   = args.to if args.to != None else 'latn'
 
 # ----------------------------------------------------------------------
 # Request subscription key and endpoint from user.
@@ -81,14 +85,29 @@ headers  = {
 # Helper function.
 # ------------------------------------------------------------------------
 
-def transliterateText(txt, lang, fr, to):
+def helper(txt, lang, fr, to):
     smpl = [{'text': txt}]
+
+    # Auto determine LANG and then use first script in the SUPPORTED
+    # output as default for FR
+
+    if lang is None:
+        durl = endpoint + '/detect?api-version=3.0'
+        result = requests.post(durl, headers=headers, json=smpl).json()
+        lang = result[0]['language']
+        # print(lang)
+
+    if fr is None:
+        turl = endpoint + '/languages?api-version=3.0'
+        response = requests.get(turl, headers=headers).json()['transliteration']
+        fr = response[lang]['scripts'][0]['code']
+        # print(fr)
 
     params = f"&language={lang}&fromScript={fr}&toScript={to}"
     request = requests.post(url + params, headers=headers, json=smpl)
-    smpl_en = request.json()
+    result = request.json()
 
-    sys.stdout.write(f"{smpl_en[0]['text']}")
+    sys.stdout.write(f"{result[0]['text']}")
     
 # ------------------------------------------------------------------------
 # Translate text obtained from command line, pipe, or interactively.
@@ -96,18 +115,12 @@ def transliterateText(txt, lang, fr, to):
 
 txt = " ".join(args.text)
 
-# TODO - These need to come through as command line options.
-
-lang = "th"
-fr   = "thai"
-to   = "latn"
-
 if txt != "":
-    transliterateText(txt, lang, fr, to)
+    helper(txt, lang, fr, to)
     print()
 elif not sys.stdin.isatty():
     for txt in sys.stdin.readlines():
-        transliterateText(txt, lang, fr, to)
+        helper(txt, lang, fr, to)
 else:
     print("Enter text to be analysed. Quit with Empty or Ctrl-d.\n")
     prompt = '> '
@@ -117,7 +130,7 @@ else:
         print()
         sys.exit(0)
     while txt != '':
-        transliterateText(txt, lang, fr, to)
+        helper(txt, lang, fr, to)
         try:
             print()
             txt = input(prompt)
