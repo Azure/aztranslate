@@ -37,6 +37,10 @@ option_parser.add_argument(
     help='text to translate')
 
 option_parser.add_argument(
+    '--header',
+    action='store_true')
+
+option_parser.add_argument(
     '-l', '--lang',
     help='language')
 
@@ -107,7 +111,7 @@ def helper(txt, lang, fr, to):
     request = requests.post(url + params, headers=headers, json=smpl)
     result = request.json()
 
-    sys.stdout.write(f"{result[0]['text']}")
+    sys.stdout.write(f"{lang.lower()},{fr.lower()},{to.lower()},{result[0]['text']}")
     
 # ------------------------------------------------------------------------
 # Translate text obtained from command line, pipe, or interactively.
@@ -116,9 +120,11 @@ def helper(txt, lang, fr, to):
 txt = " ".join(args.text)
 
 if txt != "":
+    if args.header: print("language,from,to,transliteration")
     helper(txt, lang, fr, to)
     print()
 elif not sys.stdin.isatty():
+    if args.header: print("language,from,to,transliteration")
     for txt in sys.stdin.readlines():
         helper(txt, lang, fr, to)
 else:
@@ -130,6 +136,7 @@ else:
         print()
         sys.exit(0)
     while txt != '':
+        if args.header: print("language,from,to,transliteration")
         helper(txt, lang, fr, to)
         try:
             print()
