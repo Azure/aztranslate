@@ -27,7 +27,7 @@ from mlhub.pkg import azkey
 from mlhub.utils import get_cmd_cwd
 
 # ----------------------------------------------------------------------
-# Parse command line arguments: text --to --keep
+# Parse command line arguments: text --source --to --keep
 # ----------------------------------------------------------------------
 
 option_parser = argparse.ArgumentParser(add_help=False)
@@ -36,6 +36,10 @@ option_parser.add_argument(
     'text',
     nargs="*",
     help='text to translate')
+
+option_parser.add_argument(
+    '-s', '--source',
+    help='source language')
 
 option_parser.add_argument(
     '-t', '--to',
@@ -53,6 +57,7 @@ option_parser.add_argument(
 
 args = option_parser.parse_args()
 
+fr = args.source
 to = "en" if args.to == None else args.to
 
 # ----------------------------------------------------------------------
@@ -83,18 +88,27 @@ headers  = {
 # Helper function.
 # ------------------------------------------------------------------------
 
-def helper(txt, to):
+def helper(txt, fr, to):
     smpl = [{'text': txt}]
 
     params   = '&to=' + to
     if args.profanity:
         params = params + "&ProfanityAction=Marked&ProfanityMarker=Asterisk"
+    if fr != None:
+        params = params + f"&from={fr}"
     # print(params)
     request = requests.post(url + params, headers=headers, json=smpl)
     result = request.json()
 
-    sys.stdout.write(f"{result[0]['detectedLanguage']['language']}," +
-                     f"{result[0]['detectedLanguage']['score']:0.2f}," +
+    if fr == None:
+        detectedl = result[0]['detectedLanguage']['language']
+        detecteds = result[0]['detectedLanguage']['score']
+    else:
+        detectedl = fr
+        detecteds = 1.0
+        
+    sys.stdout.write(f"{detectedl}," +
+                     f"{detecteds:0.2f}," +
                      f"{result[0]['translations'][0]['to']}," )
 
     if args.keep:
@@ -115,14 +129,14 @@ if len(args.text) == 1 and os.path.isfile(fname):
         lines = f.readlines()
     lines = [x.strip() for x in lines]
     for l in lines:
-        helper(l, to)
+        helper(l, fr, to)
         print()
 elif txt != "":
-    helper(txt, to)
+    helper(txt, fr, to)
     print()
 elif not sys.stdin.isatty():
     for txt in sys.stdin.readlines():
-        helper(txt, to)
+        helper(txt, fr, to)
 else:
     print("Enter text to be analysed. Quit with Empty or Ctrl-d.\n")
     prompt = '> '
@@ -132,7 +146,7 @@ else:
         print()
         sys.exit(0)
     while txt != '':
-        helper(txt, to)
+        helper(txt, fr, to)
         try:
             print()
             txt = input(prompt)
