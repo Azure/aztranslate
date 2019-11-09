@@ -38,7 +38,7 @@ option_parser.add_argument(
     help='text to translate')
 
 option_parser.add_argument(
-    '-s', '--source',
+    '-f', '--source', '--from',
     help='source language')
 
 option_parser.add_argument(
