@@ -288,10 +288,13 @@ $ ml translate aztranslate --to=fr मुझे सबसे महत्वप�
 hi,1.00,fr,Dites-moi le message le plus important ce matin
 ```
 
-Different translation engines have had different training experiences
-and thus have different capabilities. For example, Google translates
-the Indonesian *Wah kayak artis Korea* into *Wow, like a Korean
-artist* whilst Azure translates it as *Wah Kayaking Korean
+By default the translator will determine the source language. This can
+be overridden using *--from=*.
+
+Different language translation engines have had different training
+experiences and thus have different capabilities. For example, Google
+translates the Indonesian *Wah kayak artis Korea* into *Wow, like a
+Korean artist* whilst Azure translates it as *Wah Kayaking Korean
 artist*. This can have an impact on downstream processing such as
 sentiment analysis, for example.
 
