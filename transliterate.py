@@ -108,10 +108,15 @@ def helper(txt, lang, fr, to):
         # print(fr)
 
     params = f"&language={lang}&fromScript={fr}&toScript={to}"
+    # print(params, txt)
     request = requests.post(url + params, headers=headers, json=smpl)
     result = request.json()
-
-    sys.stdout.write(f"{lang.lower()},{fr.lower()},{to.lower()},{result[0]['text']}")
+    # print(result)
+    
+    if request.ok:
+        sys.stdout.write(f"{lang.lower()},{fr.lower()},{to.lower()},{result[0]['text']}")
+    else:
+        sys.stdout.write(f"Error code {result['error']['code']}: {result['error']['message']}")
     
 # ------------------------------------------------------------------------
 # Translate text obtained from command line, pipe, or interactively.
